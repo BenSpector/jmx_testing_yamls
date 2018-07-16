@@ -1,0 +1,54 @@
+kind: "Deployment"
+apiVersion: "extensions/v1beta1"
+metadata:
+  name: "falkonry-drill-jmx"
+  labels:
+    function: "drill"
+    party: "falkonry"
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        function: "drill"
+        name: "falkonry-drill-jmx"
+        party: "falkonry"
+    spec:
+      containers:
+        - name: "drill"
+          image: "quay.io/falkonry/apache-drill:jmx"
+          ports:
+            - containerPort: 8047
+              protocol: "TCP"
+            - containerPort: 31010
+              protocol: "TCP"
+            - containerPort: 31011
+              protocol: "TCP"
+            - containerPort: 31012
+              protocol: "TCP"
+            - containerPort: 3000
+              protocol: "TCP"
+          env:
+            - name: "ZOOKEEPER"
+              value: "falkonry-zookeeper:2181"
+            - name: "DRILL_HEAP"
+              value: "8G"
+            - name: "DRILL_QUERY_LARGE"
+              value: "2"
+            - name: "DRILL_PLANNER_MAX_MEMORY"
+              value: "2684354560"
+            - name: "DRILL_PLANNER_MEMORY_LIMIT"
+              value: "2147483648"
+            - name: "DRILL_PLANNER_WIDTH_MAX_PER_NODE"
+              value: "4"
+            - name: "DRILL_PLANNER_WIDTH_MAX_PER_QUERY"
+              value: "100"
+            - name: "DRILL_CLUSTER"
+              value: "falkonry"
+            - name: "HDFS_URL"
+              value: "hdfs://falkonry-hadoop:9000/"
+            - name: "HDFS_DATA_PREFIX"
+              value: "/tercel/data/"
+            - name: "DRILL_HOST_NAME"
+              value: "falkonry-drill-jmx"
+      restartPolicy: "Always"

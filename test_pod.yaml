@@ -1,0 +1,36 @@
+kind: "Service"
+apiVersion: "v1"
+metadata:
+  name: "falkonry-drill-jmx"
+  labels:
+    function: "drill"
+    party: "falkonry"
+spec:
+  ports:
+    -
+      name: "drill-http"
+      port: 8047
+      targetPort: 8047
+      protocol: "TCP"
+    -
+      name: "drill-jdbc"
+      port: 31010
+      targetPort: 31010
+      protocol: "TCP"
+    -
+      name: "drill-port2"
+      port: 31011
+      targetPort: 31011
+      protocol: "TCP"
+    -
+      name: "drill-port3"
+      port: 31012
+      targetPort: 31012
+      protocol: "TCP"
+    -
+      name: "jmx-port"
+      port: 3000
+      targetPort: 3000
+      protocol: "TCP"
+  selector:
+    name: "falkonry-drill-jmx"
