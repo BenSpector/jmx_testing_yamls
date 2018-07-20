@@ -15,18 +15,26 @@ spec:
         party: "falkonry"
     spec:
       containers:
-        - name: "drill"
-          image: "quay.io/falkonry/apache-drill:jmx"
+        - 
+          name: "drill"
+          image: "benspector/docker-apache-drill:drillhostname"
+            -
+              imagePullPolicy: "Always"
           ports:
-            - containerPort: 8047
+            - 
+              containerPort: 8047
               protocol: "TCP"
-            - containerPort: 31010
+            - 
+              containerPort: 31010
               protocol: "TCP"
-            - containerPort: 31011
+            - 
+              containerPort: 31011
               protocol: "TCP"
-            - containerPort: 31012
+            - 
+              containerPort: 31012
               protocol: "TCP"
-            - containerPort: 3000
+            - 
+              containerPort: 3000
               protocol: "TCP"
           env:
             - name: "ZOOKEEPER"
