@@ -57,5 +57,5 @@ spec:
               value: "/tercel/data/"
             - name: "DRILL_HOST_NAME"
               value: "falkonry-drill-jmx"
-          imagePullPolicy: "Always"
+      imagePullPolicy: "Always"
       restartPolicy: "Always"
