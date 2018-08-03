@@ -1,0 +1,29 @@
+kind: "Deployment"
+apiVersion: "extensions/v1beta1"
+metadata:
+  name: "jmx-reporter"
+  labels:
+    function: "pull-jmx-metrics"
+    party: "falkonry"
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        function: "pull-jmx-metrics"
+        name: "jmx-reporter"
+        party: "falkonry"
+    spec:
+      containers:
+        - 
+          name: "jmx-reporter"
+          image: "quay.io/falkonry/jmx-reporter:master"
+          ports:
+            - 
+              containerPort: 3000
+              protocol: "TCP"
+          imagePullPolicy: "Always"
+          imagePullSecrets:
+            -
+              name: "falkonry"
+      restartPolicy: "Always"
